@@ -1,6 +1,10 @@
 # Why Does This Exist?
 
+[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/BillyNguyen.why-does-this-exist?label=VS%20Code%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=BillyNguyen.why-does-this-exist)
+
 A Visual Studio Code extension that answers the question *"why does this file or code exist?"* by surfacing git history, blame information, and linked GitHub issues/PRs in a single side panel — on demand.
+
+> **[Install from the VS Code Marketplace →](https://marketplace.visualstudio.com/items?itemName=BillyNguyen.why-does-this-exist)**
 
 ---
 
