@@ -1,0 +1,84 @@
+{
+  "name": "why-does-this-exist",
+  "displayName": "Why Does This Exist?",
+  "description": "Explains why any file or function exists by aggregating git history, linked PRs, and commit context into a single panel.",
+  "version": "1.0.0",
+  "publisher": "iamBillyNguyen",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "keywords": ["git", "blame", "history", "context", "why"],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "whyExists.explainFile",
+        "title": "Why Does This Exist?",
+        "category": "WhyExists"
+      },
+      {
+        "command": "whyExists.explainSelection",
+        "title": "Why Does This Exist? (Selection)",
+        "category": "WhyExists"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "whyExists.explainFile",
+          "when": "!explorerResourceIsFolder",
+          "group": "navigation@99"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "whyExists.explainFile",
+          "when": "!editorHasSelection",
+          "group": "navigation@99"
+        },
+        {
+          "command": "whyExists.explainSelection",
+          "when": "editorHasSelection",
+          "group": "navigation@99"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Why Does This Exist?",
+      "properties": {
+        "whyExists.githubToken": {
+          "type": "string",
+          "default": "",
+          "description": "GitHub Personal Access Token for fetching PR and issue details (optional)."
+        },
+        "whyExists.maxCommits": {
+          "type": "number",
+          "default": 20,
+          "description": "Maximum number of commits to display in the history panel."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "package": "npm run build && vsce package",
+    "pretest": "tsc -p tsconfig.json --noEmit",
+    "test": "vscode-test"
+  },
+  "dependencies": {
+    "@octokit/rest": "^20.1.1",
+    "simple-git": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-cli": "^0.0.6",
+    "@vscode/test-electron": "^2.3.8",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.0"
+  }
+}
